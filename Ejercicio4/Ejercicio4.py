@@ -3,6 +3,7 @@ from tkinter.filedialog import askopenfilename
 from xml.etree import ElementTree as ET
 
 telefono = ListaEnlazada()
+    
 
 if __name__=='__main__':
     print("Bienvenido")
@@ -16,8 +17,8 @@ if __name__=='__main__':
         for i in range(can):
             tel = (input("Ingrese el teléfono: "))
             nombre = input("Ingrese el nombre: ")
-            apellido = input("Ingrese el apellido")
-            telefono.insertar(tel, nombre)
+            apellido = input("Ingrese el apellido: ")
+            telefono.insertar(tel, nombre, apellido)
     elif des == 2:
         ruta = askopenfilename(title="Seleccione un archivo")
         arb = ET.parse(ruta)
@@ -37,3 +38,6 @@ if __name__=='__main__':
 
     print("A continuación se mostrarán los teléfonos\n")
     telefono.mostrar()
+
+    print("A continuación se mostrarán la lista en Graphviz\n")
+    telefono.reporte()

@@ -1,0 +1,13 @@
+
+                digraph G {
+                node[shape=box fillcolor="#FFEDBB", style=filled]
+                label = "Biblioteca"
+                bgcolor = "#398D9C"
+                    subgraph G {
+                        edge[dir="both"]
+                q1[label="sa sa 123"]q2[label="sr sr 1234"]q3[label="fr fr 12345"]{rankdir = "TB";q1->q2}
+{rankdir = "TB";q2->q3}
+
+                }
+                    }
+            

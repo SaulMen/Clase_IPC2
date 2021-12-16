@@ -1,4 +1,5 @@
 from Datos import Datos
+from os import system,startfile
 
 class ListaEnlazada:
     def __init__(self):
@@ -42,6 +43,43 @@ class ListaEnlazada:
             temp = temp.next
             cont += 1
     
+    def reporte(self):
+        cabecera = self.inicio
+        temp = self.inicio
+        cont = 1
+        grafo = """
+                digraph G {
+                node[shape=box fillcolor="#FFEDBB", style=filled]
+                label = "Contactos"
+                bgcolor = "#398D9C"
+                    subgraph G {
+                        edge[dir="both"]
+                """    
+        
+        while temp is not None:
+            grafo+=f'q{cont}[label="{temp.nom} {temp.ape} {temp.tel}"]'
+            temp = temp.next
+            cont += 1
+        temp = self.inicio
+        cont = 1
+        while temp.next != None:
+            grafo+='{rankdir = "TB";'
+            grafo+=f'q{cont}->q{cont+1}'
+            grafo+='}\n'
+            cont += 1
+            temp = temp.next
+
+        grafo+="""
+                }
+                    }
+            """
+        arhivo_grafo = open('contactos.dot','w')
+        arhivo_grafo.write(grafo)
+        arhivo_grafo.close()
+
+        system("dot -Tpng contactos.dot -o contactos.png")
+        startfile("contactos.png")
+
     def ordenar(self):
         temp = self.inicio
         cont = 1
